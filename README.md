@@ -26,3 +26,5 @@ Delete `/tmp/flaky-state` (or set `FLAKY_STATE` to a new path) between runs, so 
 ## License
 
 MIT
+
+This pull request exists to show how the checks appear: `tests` required, `quarantine` failing but not blocking.

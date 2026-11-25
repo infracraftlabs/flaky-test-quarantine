@@ -26,3 +26,17 @@ Delete `/tmp/flaky-state` (or set `FLAKY_STATE` to a new path) between runs, so 
 ## License
 
 MIT
+
+## Results on GitHub Actions (25 November 2026)
+
+With `tests` as the only required status check on `main` (repository ruleset):
+
+| Job | Result |
+| --- | --- |
+| `tests` | 2 passed, 1 deselected: success |
+| `quarantine` | 1 failed, 2 deselected: failure, but the workflow run's conclusion is success |
+| `retries-demo` | 3 passed, 1 rerun: success, the flaky failure is hidden |
+
+The pull request was mergeable (merge state `UNSTABLE`: a check that is not required failed) and merged:
+see pull request #2. It also fixed a real flaw found by the first run: the size check sat after the failing
+quarantined tests and was skipped, so it now uses `if: ${{ !cancelled() }}`.
